@@ -15,15 +15,12 @@ ESX.RegisterCommand({"claimrefund"}, "admin", function(xPlayer, args)
 
                 if results[i].type == 'money' then 
                     local player = ESX.GetPlayerFromIdentifier(xPlayer.identifier)
-                    TriggerEvent('optix-logging:createlog', "https://discord.com/api/webhooks/1043286185834987540/3RJyawTHU-5Ya6uTtBgrTGi2l2qdxhyCaBNroBOPlDvXyrx5I3HDV2A-1xR9Fx38tjl6","\n **Identifier:** "..xPlayer.identifier.."\n **Key:** "..results[i].test2.."\n **Soort**: "..results[i].type.."\n**Aantal**: "..results[i].amount, false, "Refund Logs")
                     player.addMoney(results[i].amount)
                 elseif results[i].type == 'item' then 
                     local player = ESX.GetPlayerFromIdentifier(xPlayer.identifier)
-                    TriggerEvent('optix-logging:createlog', "https://discord.com/api/webhooks/1043286185834987540/3RJyawTHU-5Ya6uTtBgrTGi2l2qdxhyCaBNroBOPlDvXyrx5I3HDV2A-1xR9Fx38tjl6","\n **Identifier:** "..xPlayer.identifier.."\n **Key:** "..results[i].test2.."\n **Item **"..results[i].product.."\n **Soort**: "..results[i].type.."\n**Aantal**: "..results[i].amount, false, "Refund Logs")
                     player.addInventoryItem(results[i].product, results[i].amount)
                 elseif results[i].type == 'weapon' then 
                     local player = ESX.GetPlayerFromIdentifier(xPlayer.identifier)
-                    TriggerEvent('optix-logging:createlog', "https://discord.com/api/webhooks/1043286185834987540/3RJyawTHU-5Ya6uTtBgrTGi2l2qdxhyCaBNroBOPlDvXyrx5I3HDV2A-1xR9Fx38tjl6","\n **Identifier:** "..xPlayer.identifier.."\n **Key:** "..results[i].test2.."\n **Item **"..results[i].product.."\n **Soort**: "..results[i].type.."\n**Aantal**: "..results[i].amount, false, "Refund Logs")
                     player.addWeapon(results[i].product, results[i].amount)
                 end
                 MySQL.Async.execute('DELETE FROM refund WHERE `test2` = @key', {
